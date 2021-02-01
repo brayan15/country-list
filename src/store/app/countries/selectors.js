@@ -1,12 +1,30 @@
 // @flow
 import { createSelector } from 'reselect'
 import type { CountryT } from './types'
+import { getSearchTerm } from '../search/selectors'
 
 const getCountriesData = state => state.countries
 
 export const getCountriesAsArray = createSelector(
   state => getCountriesData(state).countries,
-  (countries: { [name: string]: CountryT }) => Object.keys(countries)
+  state => getSearchTerm(state),
+  (countries: { [name: string]: CountryT }, searchTerm: string) => {
+    const searchTermRegex = searchTerm.toLowerCase()
+
+    const filteredCountries = Object.values(countries)
+      //$FlowFixMe
+      .filter(
+        (country: CountryT) =>
+          country.name.toLowerCase() === searchTermRegex ||
+          country.alpha2Code.toLowerCase() === searchTermRegex
+      )
+      //$FlowFixMe
+      .map((country: CountryT) => country.name.toLowerCase())
+
+    const countryArray = searchTerm ? filteredCountries : Object.keys(countries)
+
+    return countryArray
+  }
 )
 
 export const makeGetCountry = () =>

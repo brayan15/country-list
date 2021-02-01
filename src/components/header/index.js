@@ -8,12 +8,13 @@ import {
   fetchCountriesError,
   fetchCountriesLoading
 } from '../../store/app/countries/actions'
+import { setSearch } from '../../store/app/search/actions'
 
 const Header = () => {
   const dispatch = useDispatch()
   const [getCountries] = useFetchCountries()
   const onSearch = (term: string) => {
-    console.log(term) //eslint-disable-line
+    dispatch(setSearch(term))
   }
 
   React.useEffect(() => {
@@ -39,6 +40,7 @@ const Header = () => {
           </div>
           <div className='header__search-wrapper'>
             <Input.Search
+              allowClear
               enterButton
               onSearch={onSearch}
               placeholder='Search country'

@@ -3,6 +3,9 @@ export const mockInitialState = {
     isLoading: false,
     status: 'NOT_REQUESTED',
     countries: {}
+  },
+  search: {
+    searchTerm: ''
   }
 }
 
@@ -27,5 +30,8 @@ export const mockStateData = {
     ...mockCountries.countries,
     isLoading: false,
     status: 'LOADED'
+  },
+  search: {
+    searchTerm: ''
   }
 }
