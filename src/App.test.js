@@ -9,8 +9,8 @@ describe('App tests', () => {
     wrapper = shallow(<App />)
   })
 
-  it('renders learn react link', () => {
-    const container = wrapper.find('.App')
+  test('renders component', () => {
+    const container = wrapper.find('.app')
 
     expect(container.exists()).toBe(true)
   })

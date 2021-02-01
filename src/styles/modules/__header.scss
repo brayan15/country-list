@@ -1,0 +1,28 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  &__branding,
+  &__branding-link {
+    color: $white;
+  }
+
+  &__search-wrapper {
+    align-items: center;
+    display: flex;
+  }
+
+  @media (max-width: $max-xs) {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    text-align: center;
+    padding: 30px 50px;
+
+    &__branding {
+      height: auto;
+      line-height: initial;
+      margin-bottom: 15px;
+    }
+  }
+}
