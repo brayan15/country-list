@@ -2,14 +2,17 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import Header from './index'
 
-describe('Header tests', () => {
-  let wrapper
+jest.mock('react-redux', () => ({
+  useDispatch: jest.fn()
+}))
 
-  beforeEach(() => {
-    wrapper = shallow(<Header />)
+describe('Header tests', () => {
+  afterEach(() => {
+    jest.clearAllMocks()
   })
 
   test('Should render Header component', () => {
+    const wrapper = shallow(<Header />)
     const header = wrapper.find('.header')
     const branding = wrapper
       .find('div')

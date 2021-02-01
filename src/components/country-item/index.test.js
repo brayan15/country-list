@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import CountryLists from './index'
+import CountryItem from './index'
 import { useSelector } from 'react-redux'
 import { mockStateData } from '../../store/app/__mocks__'
 
@@ -14,15 +14,14 @@ describe('CountryLists tests', () => {
     jest.clearAllMocks()
   })
 
-  test('Should render CountryLists component', () => {
+  test('Should render CountryItem component', () => {
     useSelector.mockImplementation(selector => selector(mockStateData))
-    const wrapper = shallow(<CountryLists />)
-    const component = wrapper.find('.country-lists')
-    const list = wrapper.find('.country-lists').children()
+    const wrapper = shallow(<CountryItem country='colombia' />)
 
-    list.props().renderItem()
+    const component = wrapper.find('.country-lists__item')
+    const card = wrapper.find('.country-lists__item').children()
 
     expect(component.exists()).toBe(true)
-    expect(list.prop('dataSource')).toEqual(['colombia'])
+    expect(card.prop('title')).toEqual('Colombia, CO 🇨🇴')
   })
 })

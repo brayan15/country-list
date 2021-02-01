@@ -1,11 +1,32 @@
 // @flow
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Layout, Row, Col, Input } from 'antd'
+import useFetchCountries from '../../hooks/useFetchCountries'
+import {
+  fetchCountries,
+  fetchCountriesError,
+  fetchCountriesLoading
+} from '../../store/app/countries/actions'
 
 const Header = () => {
+  const dispatch = useDispatch()
+  const [getCountries] = useFetchCountries()
   const onSearch = (term: string) => {
     console.log(term) //eslint-disable-line
   }
+
+  React.useEffect(() => {
+    dispatch(fetchCountriesLoading())
+
+    getCountries().then(result => {
+      if (result.hasError) {
+        return dispatch(fetchCountriesError())
+      }
+
+      return dispatch(fetchCountries(result.Country))
+    })
+  }, [dispatch]) //eslint-disable-line
 
   return (
     <Layout.Header className='header'>

@@ -1,34 +1,13 @@
+// @flow
 import React from 'react'
-import { Card, List } from 'antd'
-
-const data = [
-  {
-    title: 'Title 1'
-  },
-  {
-    title: 'Title 2'
-  },
-  {
-    title: 'Title 3'
-  },
-  {
-    title: 'Title 4'
-  },
-  {
-    title: 'Title 5'
-  },
-  {
-    title: 'Title 6'
-  },
-  {
-    title: 'Title 7'
-  },
-  {
-    title: 'Title 8'
-  }
-]
+import { List } from 'antd'
+import { useSelector } from 'react-redux'
+import { getCountriesAsArray } from '../../store/app/countries/selectors'
+import CountryItem from '../country-item'
 
 const CountryLists = () => {
+  const countries: Array<string> = useSelector(getCountriesAsArray)
+
   return (
     <div className='country-lists w-100'>
       <List
@@ -42,15 +21,12 @@ const CountryLists = () => {
           xxl: 4
         }}
         pagination={{
-          pageSize: 16
+          defaultPageSize: 30,
+          pageSizeOptions: [30, 50, 100]
         }}
-        dataSource={data}
+        dataSource={countries}
         className='country-lists__items-wrapper'
-        renderItem={item => (
-          <List.Item className='country-lists__item'>
-            <Card title={item.title}>Card content {item.title}</Card>
-          </List.Item>
-        )}
+        renderItem={item => <CountryItem country={item} />}
       />
     </div>
   )
