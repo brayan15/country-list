@@ -18,7 +18,7 @@ describe('CountryLists tests', () => {
     useSelector.mockImplementation(selector => selector(mockStateData))
     const wrapper = shallow(<CountryLists />)
     const component = wrapper.find('.country-lists')
-    const list = wrapper.find('.country-lists').children()
+    const list = wrapper.find('.country-lists__items-wrapper')
 
     list.props().renderItem()
 

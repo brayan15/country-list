@@ -6,7 +6,7 @@ import { FETCH_LANGUAGES, FETCH_LANGUAGES_ERROR, FETCH_LANGUAGES_LOADING } from 
 const initialState = {
   isLoading: false,
   status: 'NOT_REQUESTED',
-  languages: []
+  languages: {}
 }
 
 const reducer = (state: LanguagesStateT = initialState, { type, payload }: ActionT) => {

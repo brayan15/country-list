@@ -9,10 +9,13 @@ import {
   fetchCountriesLoading
 } from '../../store/app/countries/actions'
 import { setSearch } from '../../store/app/search/actions'
+import useFetchCurrencies from '../../hooks/useFetchLanguages'
+import { fetchLanguages, fetchLanguagesError } from '../../store/app/languages/actions'
 
 const Header = () => {
   const dispatch = useDispatch()
   const [getCountries] = useFetchCountries()
+  const [getLanguages] = useFetchCurrencies()
   const onSearch = (term: string) => {
     dispatch(setSearch(term))
   }
@@ -26,6 +29,14 @@ const Header = () => {
       }
 
       return dispatch(fetchCountries(result.Country))
+    })
+
+    getLanguages().then(result => {
+      if (result.hasError) {
+        return dispatch(fetchLanguagesError())
+      }
+
+      return dispatch(fetchLanguages(result.Language))
     })
   }, [dispatch]) //eslint-disable-line
 

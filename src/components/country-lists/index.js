@@ -1,15 +1,47 @@
 // @flow
 import React from 'react'
-import { List } from 'antd'
+import { List, Select } from 'antd'
 import { useSelector } from 'react-redux'
 import { getCountriesAsArray } from '../../store/app/countries/selectors'
 import CountryItem from '../country-item'
+import { getLanguagesAsArray } from '../../store/app/languages/selectors'
+
+const { Option } = Select
 
 const CountryLists = () => {
   const countries: Array<string> = useSelector(getCountriesAsArray)
+  const languages: Array<string> = useSelector(getLanguagesAsArray)
+
+  const onChangeSelect = (term: string) => {}
 
   return (
     <div className='country-lists w-100'>
+      {languages.length && countries.length ? (
+        <>
+          <p>Filter by: </p>
+          <Select
+            showSearch
+            allowClear
+            onChange={onChangeSelect}
+            style={{ width: 200 }}
+            placeholder='Filter by Language'
+            optionFilterProp='children'
+            className='country-lists__filter-language'
+            filterOption={(input, option) =>
+              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+            }
+            filterSort={(optionA, optionB) =>
+              optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
+            }
+          >
+            {languages.map((language: string) => (
+              <Option value={language} key={language} className='country-lists__filter-option'>
+                {language}
+              </Option>
+            ))}
+          </Select>
+        </>
+      ) : null}
       <List
         grid={{
           gutter: 16,

@@ -1,3 +1,12 @@
 .country-lists{
   margin-top: 50px;
+
+  &__filter-language {
+    margin-bottom: 20px;
+    text-transform: capitalize;
+  }
+
+  &__filter-option {
+    text-transform: capitalize;
+  }
 }
