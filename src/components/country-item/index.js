@@ -2,8 +2,8 @@
 import React from 'react'
 import { Card, List, Button, Modal } from 'antd'
 import { useSelector } from 'react-redux'
-import type { CallingCodeT, CountryT, CurrencyT, LanguagesT } from '../../store/app/countries/types'
 import { makeGetCountry } from '../../store/app/countries/selectors'
+import type { CallingCodeT, CountryT, CurrencyT, LanguagesT } from '../../store/app/countries/types'
 
 type PropsT = {
   country: string

@@ -1,17 +1,18 @@
 // @flow
 import React from 'react'
-import { List, Select } from 'antd'
+import { List, Select, Spin } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import CountryItem from '../country-item'
 import { setFilter } from '../../store/app/search/actions'
-import { getCountriesAsArray } from '../../store/app/countries/selectors'
 import { getLanguagesAsArray } from '../../store/app/languages/selectors'
+import { areCountriesLoading, getCountriesAsArray } from '../../store/app/countries/selectors'
 
 const { Option } = Select
 
 const CountryLists = () => {
   const countries: Array<string> = useSelector(getCountriesAsArray)
   const languages: Array<string> = useSelector(getLanguagesAsArray)
+  const isLoading: boolean = useSelector(areCountriesLoading)
   const dispatch = useDispatch()
 
   const onChangeSelect = (term: string) => dispatch(setFilter(term || ''))
@@ -44,24 +45,28 @@ const CountryLists = () => {
           </Select>
         </>
       ) : null}
-      <List
-        grid={{
-          gutter: 16,
-          xs: 1,
-          sm: 2,
-          md: 3,
-          lg: 3,
-          xl: 4,
-          xxl: 4
-        }}
-        pagination={{
-          defaultPageSize: 30,
-          pageSizeOptions: [30, 50, 100]
-        }}
-        dataSource={countries}
-        className='country-lists__items-wrapper'
-        renderItem={item => <CountryItem country={item} />}
-      />
+      {!isLoading ? (
+        <List
+          grid={{
+            gutter: 16,
+            xs: 1,
+            sm: 2,
+            md: 3,
+            lg: 3,
+            xl: 4,
+            xxl: 4
+          }}
+          pagination={{
+            defaultPageSize: 30,
+            pageSizeOptions: [30, 50, 100]
+          }}
+          dataSource={countries}
+          className='country-lists__items-wrapper'
+          renderItem={item => <CountryItem country={item} />}
+        />
+      ) : (
+        <Spin size='large' className='country-lists__loader' />
+      )}
     </div>
   )
 }

@@ -53,3 +53,8 @@ export const makeGetCountry = () =>
     (_, country) => country,
     (countries: { [name: string]: CountryT }, country: string) => countries[country] || {}
   )
+
+export const areCountriesLoading = createSelector(
+    state => getCountriesData(state).isLoading,
+    (isLoading: boolean) => isLoading
+)
