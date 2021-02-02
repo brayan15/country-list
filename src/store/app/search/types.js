@@ -1,5 +1,6 @@
 //@flow
 
 export type SearchStateT = {
-  searchTerm: string
+  searchTerm: string,
+  filterTerm: string
 }

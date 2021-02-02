@@ -1,6 +1,7 @@
 // @flow
-import type { CountriesStateT } from './countries/types'
 import type { SearchStateT } from './search/types'
+import type { CountriesStateT } from './countries/types'
+import type { LanguagesStateT } from './languages/types'
 
 export type ActionT = {
   type: string,
@@ -8,6 +9,7 @@ export type ActionT = {
 }
 
 export type AppStateT = {
+  search: SearchStateT,
   countries: CountriesStateT,
-  search: SearchStateT
+  languages: LanguagesStateT
 }

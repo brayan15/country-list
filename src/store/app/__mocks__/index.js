@@ -5,7 +5,8 @@ export const mockInitialState = {
     countries: {}
   },
   search: {
-    searchTerm: ''
+    searchTerm: '',
+    filterTerm: ''
   },
   languages: {
     isLoading: false,
@@ -63,7 +64,8 @@ export const mockStateData = {
     status: 'LOADED'
   },
   search: {
-    searchTerm: ''
+    searchTerm: '',
+    filterTerm: ''
   },
   languages: {
     ...mockLanguages.languages,

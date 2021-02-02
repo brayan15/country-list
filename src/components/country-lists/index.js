@@ -1,9 +1,10 @@
 // @flow
 import React from 'react'
 import { List, Select } from 'antd'
-import { useSelector } from 'react-redux'
-import { getCountriesAsArray } from '../../store/app/countries/selectors'
+import { useDispatch, useSelector } from 'react-redux'
 import CountryItem from '../country-item'
+import { setFilter } from '../../store/app/search/actions'
+import { getCountriesAsArray } from '../../store/app/countries/selectors'
 import { getLanguagesAsArray } from '../../store/app/languages/selectors'
 
 const { Option } = Select
@@ -11,12 +12,13 @@ const { Option } = Select
 const CountryLists = () => {
   const countries: Array<string> = useSelector(getCountriesAsArray)
   const languages: Array<string> = useSelector(getLanguagesAsArray)
+  const dispatch = useDispatch()
 
-  const onChangeSelect = (term: string) => {}
+  const onChangeSelect = (term: string) => dispatch(setFilter(term || ''))
 
   return (
     <div className='country-lists w-100'>
-      {languages.length && countries.length ? (
+      {languages.length ? (
         <>
           <p>Filter by: </p>
           <Select

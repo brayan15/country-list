@@ -7,13 +7,15 @@ describe('Selector tests', () => {
   })
 
   test('getCountriesAsArray selector with search param', () => {
-    expect(getCountriesAsArray({ ...mockStateData, search: { searchTerm: 'co' } })).toEqual([
-      'colombia'
-    ])
+    expect(
+      getCountriesAsArray({ ...mockStateData, search: { searchTerm: 'co', filterTerm: 'spanish' } })
+    ).toEqual(['colombia'])
   })
 
   test('getCountriesAsArray selector with search param', () => {
-    expect(getCountriesAsArray({ ...mockStateData, search: { searchTerm: 'al' } })).toEqual([])
+    expect(
+      getCountriesAsArray({ ...mockStateData, search: { searchTerm: 'al', filterTerm: '' } })
+    ).toEqual([])
   })
 
   test('makeGetCountry selector', () => {

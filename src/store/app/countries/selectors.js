@@ -2,14 +2,23 @@
 import { createSelector } from 'reselect'
 import type { CountryT } from './types'
 import type { AppStateT } from '../types'
-import { getSearchTerm } from '../search/selectors'
+import { getFilterTerm, getSearchTerm } from '../search/selectors'
+import { getCountriesByLanguage } from '../languages/selectors'
 
 const getCountriesData = (state: AppStateT) => state.countries
 
 export const getCountriesAsArray = createSelector(
   state => getCountriesData(state).countries,
   state => getSearchTerm(state),
-  (countries: { [name: string]: CountryT }, searchTerm: string) => {
+  state => getCountriesByLanguage(state),
+  state => getFilterTerm(state),
+  (
+    countries: { [name: string]: CountryT },
+    searchTerm: string,
+    countriesByLanguage: Array<string>,
+    filterTerm: string
+  ) => {
+    let countriesArray = []
     const searchTermRegex = searchTerm.toLowerCase()
 
     const filteredCountries = Object.values(countries)
@@ -22,9 +31,19 @@ export const getCountriesAsArray = createSelector(
       //$FlowFixMe
       .map((country: CountryT) => country.name.toLowerCase())
 
-    const countryArray = searchTerm ? filteredCountries : Object.keys(countries)
+    if (searchTerm && filterTerm !== '') {
+      countriesArray = filteredCountries.filter((country: string) =>
+        countriesByLanguage.includes(country)
+      )
+    } else if (searchTerm) {
+      countriesArray = filteredCountries
+    } else if (filterTerm !== '') {
+      countriesArray = countriesByLanguage
+    } else {
+      countriesArray = Object.keys(countries)
+    }
 
-    return countryArray
+    return countriesArray
   }
 )
 

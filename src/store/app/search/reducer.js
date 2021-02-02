@@ -1,16 +1,19 @@
 //@flow
 import type { SearchStateT } from './types'
 import type { ActionT } from '../types'
-import { SET_SEARCH } from './actions'
+import { SET_FILTER, SET_SEARCH } from './actions'
 
 const initialState = {
-  searchTerm: ''
+  searchTerm: '',
+  filterTerm: ''
 }
 
 const reducer = (state: SearchStateT = initialState, { type, payload }: ActionT) => {
   switch (type) {
     case SET_SEARCH:
-      return { searchTerm: payload }
+      return { ...state, searchTerm: payload }
+    case SET_FILTER:
+      return { ...state, filterTerm: payload }
     default:
       return state
   }
