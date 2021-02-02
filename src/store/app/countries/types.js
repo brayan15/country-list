@@ -26,6 +26,15 @@ export type FlagT = {
   svgFile: string
 }
 
+export type LocationT = {
+  latitude: number,
+  longitude: number
+}
+
+export type CallingCodeT = {
+  name: string
+}
+
 export type CountryT = {
   name: string,
   alpha2Code: string,
@@ -39,7 +48,9 @@ export type CountryT = {
   populationDensity: number,
   subregion: SubregionT,
   currencies: Array<CurrencyT>,
-  flag: FlagT
+  location: LocationT,
+  flag: FlagT,
+  callingCodes: Array<CallingCodeT>
 }
 
 export type CountriesStateT = {

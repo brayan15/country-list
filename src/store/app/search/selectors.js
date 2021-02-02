@@ -1,3 +1,4 @@
 //@flow
-//$FlowFixMe
-export const getSearchTerm = state => state.search.searchTerm
+import type { AppStateT } from '../types'
+
+export const getSearchTerm = (state: AppStateT) => state.search.searchTerm

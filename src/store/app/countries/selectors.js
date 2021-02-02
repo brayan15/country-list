@@ -1,9 +1,10 @@
 // @flow
 import { createSelector } from 'reselect'
 import type { CountryT } from './types'
+import type { AppStateT } from '../types'
 import { getSearchTerm } from '../search/selectors'
 
-const getCountriesData = state => state.countries
+const getCountriesData = (state: AppStateT) => state.countries
 
 export const getCountriesAsArray = createSelector(
   state => getCountriesData(state).countries,
