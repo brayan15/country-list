@@ -25,7 +25,7 @@ export const mockCountries = {
         alpha3Code: 'COL',
         population: 48759958,
         capital: 'Bogotá',
-        callingCode: { name: '57' },
+        callingCodes: [{ name: '57' }],
         currencies: [{ name: 'Colombian peso', symbol: '$' }],
         location: { latitude: 4, longitude: -72 },
         flag: {
@@ -38,6 +38,28 @@ export const mockCountries = {
         officialLanguages: [
           { iso639_1: 'es', iso639_2: 'spa', name: 'Spanish', nativeName: 'Español' }
         ]
+      }
+    }
+  }
+}
+
+export const mockCountriesWithEmptyData = {
+  countries: {
+    countries: {
+      colombia: {
+        name: 'Colombia',
+        nativeName: 'Colombia',
+        alpha2Code: 'CO',
+        alpha3Code: 'COL',
+        population: 48759958,
+        capital: 'Bogotá',
+        location: { latitude: 4, longitude: -72 },
+        officialLanguages: [],
+        callingCodes: [],
+        currencies: [],
+        flag: {
+          emoji: '🇨🇴'
+        }
       }
     }
   }
@@ -60,6 +82,23 @@ export const mockLanguages = {
 export const mockStateData = {
   countries: {
     ...mockCountries.countries,
+    isLoading: false,
+    status: 'LOADED'
+  },
+  search: {
+    searchTerm: '',
+    filterTerm: ''
+  },
+  languages: {
+    ...mockLanguages.languages,
+    isLoading: false,
+    status: 'LOADED'
+  }
+}
+
+export const mockStateWithEmptyData = {
+  countries: {
+    ...mockCountriesWithEmptyData.countries,
     isLoading: false,
     status: 'LOADED'
   },

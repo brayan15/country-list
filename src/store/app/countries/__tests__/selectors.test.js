@@ -6,15 +6,21 @@ describe('Countries selectors tests', () => {
     expect(getCountriesAsArray(mockStateData)).toEqual(['colombia'])
   })
 
-  test('getCountriesAsArray selector with search param', () => {
+  test('getCountriesAsArray selector with searchTerm and filterTerm param', () => {
     expect(
       getCountriesAsArray({ ...mockStateData, search: { searchTerm: 'co', filterTerm: 'spanish' } })
     ).toEqual(['colombia'])
   })
 
-  test('getCountriesAsArray selector with search param', () => {
+  test('getCountriesAsArray selector with searchTerm and without filterTerm param', () => {
     expect(
       getCountriesAsArray({ ...mockStateData, search: { searchTerm: 'al', filterTerm: '' } })
+    ).toEqual([])
+  })
+
+  test('getCountriesAsArray selector with filterTerm and without searchTerm param', () => {
+    expect(
+        getCountriesAsArray({ ...mockStateData, search: { searchTerm: '', filterTerm: 'english' } })
     ).toEqual([])
   })
 

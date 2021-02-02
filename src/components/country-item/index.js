@@ -34,7 +34,7 @@ const CountryItem = ({ country }: PropsT) => {
           <p>Code: {countryData.alpha2Code}</p>
           <p>Capital: {countryData.capital}</p>
           <p>Population: {countryData.population}</p>
-          <Button type='primary' onClick={showModal} className='w-100'>
+          <Button type='primary' onClick={showModal} className='country-lists__button w-100'>
             Show More Info
           </Button>
         </Card>
@@ -44,6 +44,7 @@ const CountryItem = ({ country }: PropsT) => {
           onOk={handleOk}
           visible={isModalVisible}
           onCancel={handleCancel}
+          className='country-lists__modal'
           title={`${countryData.name}, ${countryData.alpha2Code} ${countryData.flag.emoji}`}
         >
           <p>Name: {countryData.name}</p>
@@ -58,7 +59,7 @@ const CountryItem = ({ country }: PropsT) => {
           </p>
           <p>Native Name: {countryData.nativeName}</p>
           {countryData.subregion ? <p>Subregion: {countryData.subregion.name}</p> : null}
-          {countryData.officialLanguages ? (
+          {countryData.officialLanguages.length ? (
             <>
               <p>Languages:</p>
               <ul>
@@ -68,7 +69,7 @@ const CountryItem = ({ country }: PropsT) => {
               </ul>
             </>
           ) : null}
-          {countryData.callingCodes ? (
+          {countryData.callingCodes.length ? (
             <>
               <p>Calling Codes:</p>
               <ul>
@@ -78,7 +79,7 @@ const CountryItem = ({ country }: PropsT) => {
               </ul>
             </>
           ) : null}
-          {countryData.currencies ? (
+          {countryData.currencies.length ? (
             <>
               <p>Currencies:</p>
               <ul>
