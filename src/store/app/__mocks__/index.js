@@ -6,6 +6,11 @@ export const mockInitialState = {
   },
   search: {
     searchTerm: ''
+  },
+  languages: {
+    isLoading: false,
+    status: 'NOT_REQUESTED',
+    languages: {}
   }
 }
 
@@ -37,6 +42,20 @@ export const mockCountries = {
   }
 }
 
+export const mockLanguages = {
+  languages: {
+    languages: {
+      spanish: {
+        iso639_1: 'es',
+        iso639_2: 'spa',
+        name: 'Spanish',
+        nativeName: 'Español',
+        countries: [{ name: 'Colombia' }]
+      }
+    }
+  }
+}
+
 export const mockStateData = {
   countries: {
     ...mockCountries.countries,
@@ -45,5 +64,10 @@ export const mockStateData = {
   },
   search: {
     searchTerm: ''
+  },
+  languages: {
+    ...mockLanguages.languages,
+    isLoading: false,
+    status: 'LOADED'
   }
 }

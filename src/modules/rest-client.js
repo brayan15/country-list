@@ -23,6 +23,19 @@ class RestClient {
       })
       .then(({ data }) => data.data)
   }
+
+  /**
+   * Get currencies from api
+   * @return {Promise}
+   */
+
+  getLanguages = () => {
+    return this._authApi
+        .post('', {
+          query: countriestQueries.queries.getLanguages
+        })
+        .then(({ data }) => data.data)
+  }
 }
 
 const restClient = new RestClient()

@@ -59,6 +59,18 @@ const countriestQueries = {
           name
         }
       }
+    }`,
+    getLanguages: `
+    query {
+      Language {
+        iso639_1
+        iso639_2
+        name
+        nativeName
+        countries {
+          name
+        }
+      }
     }`
   }
 }
