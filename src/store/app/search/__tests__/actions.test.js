@@ -1,7 +1,7 @@
 import { SET_SEARCH, setSearch } from '../actions'
 
-describe('Action tests', () => {
-  test('setSearch', () => {
+describe('Search action test', () => {
+  test('setSearch action', () => {
     expect(setSearch('test')).toEqual({ type: SET_SEARCH, payload: 'test' })
   })
 })

@@ -1,13 +1,13 @@
 import {
   FETCH_COUNTRIES,
-  FETCH_COUNTRIES_ERROR,
-  FETCH_COUNTRIES_LOADING,
   fetchCountries,
   fetchCountriesError,
-  fetchCountriesLoading
+  FETCH_COUNTRIES_ERROR,
+  fetchCountriesLoading,
+  FETCH_COUNTRIES_LOADING
 } from '../actions'
 
-describe('Action tests', () => {
+describe('Countries actions tests', () => {
   test('fetchCountries action', () => {
     const EXPECTED_ACTION = { type: FETCH_COUNTRIES, payload: { name: 'test' } }
 

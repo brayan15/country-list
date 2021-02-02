@@ -1,7 +1,7 @@
-import { getCountriesAsArray, makeGetCountry } from '../selectors'
 import { mockStateData } from '../../__mocks__'
+import { getCountriesAsArray, makeGetCountry } from '../selectors'
 
-describe('Selector tests', () => {
+describe('Countries selectors tests', () => {
   test('getCountriesAsArray selector', () => {
     expect(getCountriesAsArray(mockStateData)).toEqual(['colombia'])
   })

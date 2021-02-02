@@ -2,7 +2,7 @@ import search from '../reducer'
 import { SET_SEARCH } from '../actions'
 import { mockInitialState } from '../../__mocks__'
 
-describe('reducer tests', () => {
+describe('Search reducer tests', () => {
   test('SET_SEARCH case', () => {
     const DISPATCHED_ACTION = { type: SET_SEARCH, payload: 'test' }
 
@@ -12,7 +12,7 @@ describe('reducer tests', () => {
     })
   })
 
-  test('default case', () => {
+  test('EMPTY case', () => {
     expect(search(undefined, '')).toEqual(mockInitialState.search)
   })
 })

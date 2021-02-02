@@ -5,7 +5,7 @@ import { mockStateData } from '../../store/app/__mocks__'
 
 jest.mock('../../modules/rest-client')
 
-describe('useFetchCountries test', () => {
+describe('useFetchCountries tests', () => {
   test('service should call data', () => {
     restClient.getCountries.mockImplementation(() =>
       Promise.resolve({ Country: { ...mockStateData.countries.countries.colombia } })
